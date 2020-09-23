@@ -40,13 +40,21 @@
 </section>
 
 
-<section class="orders">
+<center>
+<table class = "orders">
+  <tr>
+    <th>Item</th>
+    <th>Potential Revenue</th>
+    <th>Quantity</th>
+    <th>Created</th>
+  </tr>
   <% @merchant.pending_orders.each do |order| %>
-    <section id="order-<%= order.id %>">
-      <%= link_to order.id, "/merchant/orders/#{order.id}" %>
-      <p>Potential Revenue: <%= order.merchant_subtotal(@merchant.id) %></p>
-      <p>Quantity of Items: <%= order.merchant_quantity(@merchant.id) %></p>
-      <p>Created: <%= order.created_at %></p>
-    </section>
+    <tr id="order-<%= order.id %>">
+      <td><%= link_to order.id, "/merchant/orders/#{order.id}" %></td>
+      <td><p>Potential Revenue: <%= order.merchant_subtotal(@merchant.id) %></p></td>
+      <td><p>Quantity of Items: <%= order.merchant_quantity(@merchant.id) %></p></td>
+      <td><p>Created: <%= order.created_at %></p></td>
+    </tr>
   <% end %>
-</section>
+</table>
+</center>
