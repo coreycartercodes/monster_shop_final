@@ -3,17 +3,29 @@
 <p><%= @order.user.city %> <%= @order.user.state %> <%= @order.user.zip %></p>
 <p>Status: <%= @order.status %></p>
 
+
+<center>
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Status</th>
+  </tr>
 <% @merchant.order_items_by_order(@order.id).each do |order_item| %>
-  <section id="order-item-<%= order_item.id %>">
-    <%= link_to order_item.item.name, "/merchant/items/#{order_item.item.id}" %>
-    <p>Price: <%= number_to_currency(order_item.price) %></p>
-    <p>Quantity: <%= order_item.quantity %></p>
-    <% if order_item.fulfilled? %>
+  <tr id="order-item-<%= order_item.id %>">
+    <td><%= link_to order_item.item.name, "/merchant/items/#{order_item.item.id}" %></td>
+    <td><p><%= number_to_currency(order_item.price) %></p></td>
+    <td><p><%= order_item.quantity %></p></td>
+    <td><% if order_item.fulfilled? %>
       <p>Fulfilled</p>
     <% elsif order_item.fulfillable? %>
       <%= link_to 'Fulfill', "/merchant/orders/#{@order.id}/fulfill/#{order_item.id}" %>
     <% else %>
       <p>Insufficient Inventory</p>
+      </td>
     <% end %>
-  </section>
+  </tr>
 <% end %>
+</table>
+</center>
