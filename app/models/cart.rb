@@ -49,9 +49,10 @@ class Cart
   def apply_discount(item)
     item.merchant.discounts
     .where("? >= threshold_quantity", count_of(item.id))
-    .order(:discount_percentage)
+    .order(discount_percentage: :desc)
+    .limit(1)
     .pluck(:discount_percentage)
-    .last
+    .first
   end
 
   def sale_price(item)

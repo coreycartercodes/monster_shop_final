@@ -65,17 +65,17 @@ RSpec.describe Cart do
       expect(@cart.count_of(@giant.id)).to eq(1)
     end
 
-    # it '.apply_discount' do
-    #   discount_1 = @megan.discounts.create!(threshold_quantity: 5, discount_percentage: 10)
-    #   cart = Cart.new({@ogre.id.to_s => 10})
-    #   expect(@cart.apply_discount(@ogre)).to eq(10)
-    # end
+    it '.apply_discount' do
+      discount_1 = @megan.discounts.create!(threshold_quantity: 5, discount_percentage: 10)
+      cart = Cart.new({@ogre.id.to_s => 10})
+      expect(cart.apply_discount(@ogre)).to eq(10)
+    end
 
-    # it '.sale_price' do
-    #   discount_1 = @megan.discounts.create!(threshold_quantity: 5, discount_percentage: 10)
-    #   cart = Cart.new({@ogre.id.to_s => 10})
-    #   expect(@cart.sale_price(@ogre)).to eq(18)
-    # end
+    it '.sale_price' do
+      discount_1 = @megan.discounts.create!(threshold_quantity: 5, discount_percentage: 10)
+      cart = Cart.new({@ogre.id.to_s => 10})
+      expect(cart.sale_price(@ogre)).to eq(18)
+    end
     
   end
 end
